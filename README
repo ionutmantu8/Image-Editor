@@ -1,0 +1,85 @@
+#Copyright Ionut Mantu 313 CAb 2023-2024
+Implementarea problemei
+Informatii generale:
+Toata problema este bazata pe structul de RGB.Pentru imaginile color lucrez cu
+tot structul iar pentru cele grayscale retin matricea in matricea de red
+pentru a nu complica problema cu inca un struct de grayscale.Incepand in main
+imi definesc o variabila de tipul image care este un pointer la structul de
+image si o initializez cu NULL.Apoi intr-o bucla infinita citesc comand 
+folosind fgets si strtok pentru a separa cuvintele din comanda si le pun
+intr-un vector de cuvinte,din cauze problemei de citire cu scanf care se 
+opreste la primul spatiu.Apoi in functia command verific daca comanda este
+una valida si returnez un anumit numar pentru a putea folosi switch.O data
+cu inceperea switchului se intra in program propriu zis.
+Functiile pentru imagine implementate:
+Functia Load:
+Aceasta functie primeste ca parametru numele imaginii si o incarca in memoria
+folosind functia FreeImage_Load care returneaza un pointer la imaginea incarcata
+si NULL in caz de eroare.Apoi verific care este tipul imaginii si in functie
+de asta decid daca deschid fisierul binar sau normal.Pentru P2 si P3 
+utilizez functia fscanf deoarece sunt de tip ascii,iar pentru P5 si P6
+folosesc functia fread deoarece sunt de tip binar.La finalul acestei functii
+resetez variabilele de selectie si inchid fisierul.
+Functia Save:
+Aceasta functie primeste ca parametru numele imaginii,pointerul la imaginea
+incarcata si tipul imaginii pe care o salvez.Urmeaza verificarea tipului
+de imagine si si verificarea daca parametrul ascii a fost introdus de la 
+tastatura si in caz ca da schimb tipul imaginii.Pentru P2 si P3 utilizez
+functia fprintf deoarece sunt de tip ascii,iar pentru P5 si P6 folosesc
+functia fwrite deoarece sunt de tip binar.La finalul acestei functii.
+Functia Exit:
+Cu aceasta functie dealoc resursele pentru imagine si inchid programul.
+Functia Select:
+Aceasta functie primeste ca parametru pointerul la imaginea incarcata si
+vectorul de cuvinte.Se verifica daca parametrii sunt corecti si daca sunt
+retin in variabilele de selectie din structul rgb valorile date de la tastatura.
+Functia Select_all:
+Aceasta functie primeste ca parametru pointerul la imaginea incarcata si
+retine in variabilele de selectie din structul rgb intreaga marime a imaginii.
+Functia Crop:
+In aceasta functie verific care este tipul imaginii deoarece daca este rgb
+lucrez cu toate toate tipurile si red si green si blue si daca e grayscale
+retin ce am nevoie doar in red.Principul de lucru pentru ambele cazuri 
+este definirea unei matrici auxiliare care va fi la fel de mare ca 
+selectia ce va fi croppuita,pun in matricea auxiliara elementele
+corespunzatoare din matricea originala si realoc matricea originala
+pentru a fi si ea la fel de mare ca selectia de crop.Copiez
+apoi din matricea auxiliara in matricea originala si dealoc matricea
+auxiliara.
+Functia Equalize:
+In aceasta functie verific daca imaginea este grayscale deoarece 
+daca este rgb nu se poate aplica equalizeul.Imi definesc apoi un vector
+de frecventa pentru fiecare valoare posibila a unui pixel si il initializez
+cu 0.Apoi parcurg matricea si cresc cu 1 valoarea din vectorul de frecventa
+corespunzatoare fiecarui pixel.Apoi calculez suma valorilor apartiilor
+pixelilor pe care o inmultesc cu 255 si o impart la suprafata matricei
+pentru a obtine valoarea medie a pixelilor si pun aceasta valoare in
+matricea originala.
+Functia Histogram:
+De asemenea si in aceasta functie verific daca imaginea este grayscale
+deoarece daca este rgb nu se poate aplica histograma.Imi definesc apoi
+un vector de frecventa pentru fiecare valoare posibila a unui pixel si il
+initializez cu 0.Se calculeaza frecvența pixelilor din imagine. 
+Fiecare valoare a intensitatii pixelilor inregistrata intr-un vector de 
+frecvență.Se calculeaza si numarul de subintervale in care se poate imparti
+intervalul mare.In urmare se calculeaza intr un vector auxiliar valoarea
+pentru fiecare grup de binuri si se determina valoarea maxima dintre
+acestea pentru a putea scala histograma.Se aplica apoi formula corespunzatoare
+pentru a afla cate stelute vor fi pe un rand si se afiseaza histograma.
+Functia Apply:
+In functia de apply se verifica daca imaginea este grayscale si in acest caz
+se iese din functie deoarece lucram doar cu imaginii rgb.Imi definesc apoi
+o matrice numita ker pe care o initializez corespunzator in functie de
+filtrul pe care il aplic si verific daca a fost facuta vreo selectie 
+in caz contrar aplic automat filtrul pe toata imaginea,de asemenea 
+exista si o verificare pentru a nu iesi in afara imaginii.
+Imi aloc apoi memorie pentru o matrice auxiliara in care calculez
+valoarea fiecarui pixel in functie de filtru si de vecinii acestuia.In final adaug 
+toate valorile noilor pixeli in matricea originala si dealoc matricea auxiliara.
+Functia Rotate:
+In aceasta functie pun conditiile de parametrii si lucrez cu functii de rotire de 90 de grade.
+Rotirea o abordez prin lucrul cu indicii matricei.Apoi in functia de rotate verific cat de 
+mare unghiul si in functie de asta o apelez de cate ori este suficient.
+
+
+
