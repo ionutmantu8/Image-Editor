@@ -80,6 +80,6 @@ Functia Rotate:
 In aceasta functie pun conditiile de parametrii si lucrez cu functii de rotire de 90 de grade.
 Rotirea o abordez prin lucrul cu indicii matricei.Apoi in functia de rotate verific cat de 
 mare unghiul si in functie de asta o apelez de cate ori este suficient.
-
+//Acesta a fost unul dintre primele mele proiecte stiu ca nu este in regula ca in fisiere header sa se afle cod dar n am mai apucat sa schimb
 
 
