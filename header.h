@@ -28,6 +28,7 @@ int command(char *com, char *com_extra);
 image *load(const char *filename);
 
 void save(const char *filename, image *img, const char *ascii);
+
 void freeimage(image *img);
 
 void select_area(image *img, char **words);
